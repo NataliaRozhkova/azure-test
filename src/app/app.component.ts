@@ -42,12 +42,10 @@ export class AppComponent   {
             {
                 clientId: "65c3394d-d996-47fb-9570-0dde995af2d6",
                    tenantId: "56cc67ca-d4e8-41ed-a6b2-80437cf6f9dc",
-                  // You may provide a redirectUri based on the redirectUri configured in your Microsoft Entra application:
-                  redirectUri: "http://localhost:4200/"
+                  redirectUri: "https://gray-forest-045ec2303.5.azurestaticapps.net/"
             }
         );
-         const vaultName = "azur-test";
-         const url = 'https://azur-test-keys.managedhsm.azure.net/';
+         const url = 'https://azur-test-keys.managedhsm.azure.net';
          this.client = new KeyClient(url, credential);
         const secretName = "MySecretName";
 
@@ -64,7 +62,9 @@ export class AppComponent   {
       const keyName = 'deep-secret';
 
     const latestKey = await this.client.getKey(keyName);
+
       console.log(`Latest version of the key ${keyName}: `, latestKey);
+
       const specificKey = await this.client.getKey(keyName, { version: latestKey.properties.version! });
       console.log(`The key ${keyName} at the version ${latestKey.properties.version!}: `, specificKey);
 
